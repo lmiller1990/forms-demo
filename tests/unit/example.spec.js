@@ -1,12 +1,19 @@
-import { shallowMount } from '@vue/test-utils'
-import HelloWorld from '@/components/HelloWorld.vue'
+import { required } from '../../src/validations.js'
 
-describe('HelloWorld.vue', () => {
-  it('renders props.msg when passed', () => {
-    const msg = 'new message'
-    const wrapper = shallowMount(HelloWorld, {
-      props: { msg }
-    })
-    expect(wrapper.text()).toMatch(msg)
+describe('required', () => {
+  it('is valid', () => {
+    const actual = required('lachlan')
+    expect(actual).toEqual({ valid: true })
+  })
+
+  const result = { valid: false, message: 'Required' }
+  const cases = [
+    ['', result],
+    [null, result],
+    [undefined, result],
+  ]
+
+  test.each(cases)('returns invalid', (input, output) => {
+    expect(required(input)).toEqual(output)
   })
 })
