@@ -38,10 +38,14 @@ export function isBetween(value, { min, max }) {
   }
 }
 
+export function isFormValid(form) {
+  return form.name.valid && form.weight.valid
+}
+
 export function validatePatient(patient) {
   return {
     name: required(patient.name),
-    weight: validateMeasurement(patient.weight.value, constraints)
+    weight: validateMeasurement(patient.weight.value, constraints[patient.weight.units])
   }
 }
 

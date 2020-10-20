@@ -2,8 +2,10 @@ import {
   required, 
   isBetween,
   validateMeasurement,
-  constraints
+  constraints,
+  isFormValid
 } from '../../src/validations.js'
+import App from '../../src/App.vue'
 
 describe('validateMeasurement', () => {
   it('return valid is true', () => {
@@ -62,3 +64,25 @@ describe('isBetween', () => {
   })
 })
 
+
+describe('isFormValid', () => {
+  it('is not valid', () => {
+    const validatedForm = {
+      name: { valid: false },
+      weight: { valid: true },
+    }
+    const actual = isFormValid(validatedForm)
+
+    expect(actual).toBe(false)
+  })
+
+  it('is valid', () => {
+    const validatedForm = {
+      name: { valid: true },
+      weight: { valid: true },
+    }
+    const actual = isFormValid(validatedForm)
+
+    expect(actual).toBe(true)
+  })
+})
