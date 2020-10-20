@@ -10,19 +10,12 @@ export const constraints = {
 }
 
 export function validateMeasurement(value, { min, max }) {
-  const isNotNull = required(value)
-  if (!isNotNull.valid) {
-    return isNotNull
+  const result = required(value)
+  if (!result.valid) {
+    return result
   }
 
-  const fallsBetween = isBetween(value, { min, max })
-  if (!fallsBetween.valid) {
-    return fallsBetween
-  }
-
-  return {
-    valid: true
-  }
+  return isBetween(value, { min, max })
 }
 
 export function isBetween(value, { min, max }) {
