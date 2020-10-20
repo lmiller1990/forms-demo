@@ -1,0 +1,14 @@
+<style>
+.field > label {
+  display: inline-block;
+  width: 50px;
+  margin: 0 0 20px 0;
+}
+.field > input {
+  display: inline-block;
+  margin: 2px;
+}
+.error {
+  color: red;
+}
+</style>
