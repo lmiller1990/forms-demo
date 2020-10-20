@@ -38,6 +38,26 @@ export function isBetween(value, { min, max }) {
   }
 }
 
+export function validatePatient(patient) {
+  return {
+    name: required(patient.name),
+    weight: validateMeasurement(patient.weight, constraints)
+  }
+}
+
+/**
+ * patient = {
+ *   name: '',
+ *   weight: {
+ *     value: 100,
+ *     units: 'kg'
+ *   }
+ * }
+ */
+export function patientForm(patient) {
+  return validatePatient(patient)
+}
+
 export function required(value) {
   if (!value) {
     return {
